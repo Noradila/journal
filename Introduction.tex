@@ -1,0 +1,57 @@
+\section{Introduction}
+
+% The very first letter is a 2 line initial drop letter followed
+% by the rest of the first word in caps.
+% 
+% form to use if the first word consists of a single letter:
+% \IEEEPARstart{A}{demo} file is ....
+% 
+% form to use if you need the single drop letter followed by
+% normal text (unknown if ever used by the IEEE):
+% \IEEEPARstart{A}{}demo file is ....
+% 
+% Some journals put the first two words in caps:
+% \IEEEPARstart{T}{his demo} file is ....
+% 
+% Here we have the typical use of a "T" for an initial drop letter
+% and "HIS" in caps to complete the first word.
+%\IEEEPARstart{T}{his} demo file is intended to serve as a ``starter file''
+%for IEEE journal papers produced under \LaTeX\ using
+%IEEEtran.cls version 1.8b and later.
+% You must have at least 2 lines in the paragraph with the drop letter
+% (should never be an issue)
+
+%CHALLENGES AND ISSUES
+\IEEEPARstart{W}{ireless} sensor networks (WSNs) are widely used in various kinds of applications to collect data and measurements data from the sensors. The sensors are mainly deployed to track and monitor in different types of environments such as on the land, underground and underwater for continuous sensing, event detection, location sensing and other control over the different components of the sensing device. It is increasingly important to have reliable and energy efficient WSNs that could function for years as sensors are easily deployed in areas that are difficult to reach such as for volcanic monitoring, forest fire detection and flood detection. WSNs could help to enable automated services in smart cities to improve the environment quality, increase the energy saving and improve the lifestyle as WSNs simplify and reduce manual and labour work to automated systems. This is because sensors can be densely deployed, easy to install and require minimal maintenance over a period of time. 
+
+However, sensors suffer from limited hardware resources which only allow limited computational functionalities to be performed. Sensors also suffer from limited energy capacities as they are battery powered and will become faulty and not able to function once the certain threshold of energy level is reached. 
+Sensors also operate in an unreliable radio environment that is noisy and error prone which drain the sensors batteries at a higher rate. These constraints have a major impact on the sensors performance. In order to prolong the sensors lifetime thus, the network lifetime, the sensors need to be able to cope with the limitations and be as energy-efficient as possible to guarantee good overall performance.
+
+Many energy efficient protocols have been proposed in term of the MAC protocols, routing protocols, power control and energy harvesting to overcome the problems of interference to maximise the throughput and the sensors energy to prolong the network lifetime. 
+MAC and routing protocols are the main protocols that control the network energy consumption to allow the network to remain functional for a longer period of time. While the other proposed solutions could increase the sensors residual energy, the energy saving depends on the MAC and routing protocols.
+There have been many proposals in multichannel MAC protocols that show promising results but none is widely implemented yet. In MAC protocol, the energy consumption can be reduced by adjusting the radio duty cycle to allow the sensors to be in the sleep mode when they are not used and to transmit on channels that have less interference to increase the likeliness of data success.
+ 
+%In order to overcome the problems of interference and sensors energy in WSN, many energy efficient protocols have been proposed in term of the MAC protocols, routing protocols, power control and energy harvesting to prolong the network lifetime while maximising the throughput. 
+
+%While energy harvesting does not improve the energy usage, it enables the sensors to try to replenish the energy by using other energy sources such as rechargeable batteries \cite{macsurvey}, solar cells \cite{wsnheap, reviewharvest}, vibration \cite{gilbert2008comparison}, fuel cells, acoustic noise and a mobile supplier \cite{wsnSurvey1}. However, energy harvesting depends heavily on various environment factors such as light, vibration and heat to be generated and converted to the usable electrical energy which might not be feasible in certain conditions. 
+
+%Power control \cite{macsurvey, santitopologycontrol} on the other hand, refers to the techniques which control the transmission power levels thus transmission range, enables simultaneous communications without interfering each other due to the relatively short transmission ranges. This reduces congestions from retransmissions. However, it does not reduce the sensors energy consumption as it depends on the radio duty cycle.
+
+%It is clear that MAC and routing protocols are the main protocols that control the network energy consumption to allow the network to remain functional for a longer period of time. While the other proposed solutions could increase the sensors residual energy, the energy saving depends on the MAC and routing protocols.
+%There have been many proposals in multichannel MAC protocols that show promising results but none is widely implemented yet. In MAC protocol, the energy consumption can be reduced by adjusting the radio duty cycle to allow the sensors to be in the sleep mode when they are not used and to transmit on channels that have less interference to increase the likeliness of data success.
+
+To further improve the efficiency, routing protocols are responsible to ensure high success rate in data routing from the sender to the intended receiver across the network. 
+The routing protocols are required to manage and maintain the routes to ensure reliable communications between the limited range sensors. The routing protocols in WSNs are different than the traditional routing protocols due to the sensors limitations. 
+Most routing protocols concentrate on the ability for scalability, reliability and adaptability to the network changes without emphasising the importance of residual energy as part of the vital design in a routing protocol. 
+
+By considering the overall network in optimising and balancing the routes to the sensors, overloading certain sensors that have higher throughput thus lower residual energy due to energy drain can be avoided.
+Implementing multichannel MAC protocol that uses a reliable and energy-aware routing protocol enables the overall network lifetime to be prolonged while maintaining high packet reception rate in WSNs.
+
+The contributions of this paper are as follows. First, multichannel cross-layer routing protocol (MCRP)\cite{mcrp} for WSNs that was developed is briefly described for completeness which shows improved energy efficiency as it consumes on average, 6 times less energy during communications.
+%improvement to the network lifetime. 
+Multichannel helps to increase the overall throughput by using interference free or minimal interference channels, however it does not consider the sensors lifetime during the decision making process. Multichannel routing tree optimisation is introduced which aims to extend the WSN lifetime by switching the routes that use the sensor with the minimum residual energy from their initial paths to other paths which from the experiments show an increase in the lifetime of the network by 6.2 times. 
+The sensors are assumed to be on the good channels. The sensors have different transmission and reception channels. 
+
+This paper is organised as follows. Section \ref{RelatedWork} presents the related work, Section \ref{ProblemFormulation} defines the problem in WSNs and the approaches for optimisation. Section \ref{MCRP} explains the multichannel cross-layer routing protocol and the improvements in comparison to a single and existing multichannel protocols.
+%multichannel protocol which could be improved through routing protocol.
+Section \ref{OptimalTree} describes the proposed energy-based tree reconfiguration for WSNs in detail and Section \ref{PerformanceEvaluation} evaluates the performance of the proposed optimisation. Finally, Section \ref{Conclusion} concludes this paper.

@@ -1,0 +1,64 @@
+\section{Performance Evaluation}
+\label{PerformanceEvaluation}
+
+This section describes the evaluation of the following performance metrics: (a) the average number of switches to form the optimal tree and (b) the impact of swapping on the network lifetime.  
+
+%\subsection{MCRP Results}
+
+\subsection{Simulation Setup}
+
+The optimal tree algorithm is simulated in C. The number of sensors considered is between 10 to 500 and each node is randomly assigned an initial energy between 50\% to 100\%. The link conditions are also randomly assigned the value between 1 to 10 where smaller number indicates better link condition as it requires smaller number of retransmissions. In this setup, the channels are fixed, assuming that the current channels that the nodes are listening and transmitting on, are the best selected channels from the previous MCRP processes. RPL builds the initial tree based on the ETX value which is then further improved by MCRP. In order to avoid all the nodes from directly connecting to the LPBR, each node could route to a minimum of $1/10$ and $1/30$ of the total number of nodes. %As each path is bi-directional,  
+This allows the node to have alternative parents (thus paths) for the swapping processes and hops to reach the LPBR. The node is not necessarily connected to all $1/10$ and $1/30$ nodes. The paths between the nodes are selected based on the RPL and MCRP processes. These values are selected in the case where (a) the nodes are closely together ($1/10$), and (b) the nodes are spread out with minimum connections to the other nodes available ($1/30$). 
+
+\subsection{Simulation Results}
+\subsubsection{Average Number of Switches}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.45\textwidth]{figures/swaps.pdf}
+\caption{Average number of swaps}
+\label{fig:aveSwaps}
+\end{figure}
+
+Figure \ref{fig:aveSwaps} shows the standard deviation and average number of swaps using MCRP optimal tree algorithm. 
+The standard deviation on the x axis is slightly shifted to avoid overlapping.
+It can be observed that there are more swaps on average when there are more sensors in the network in both connection cases. However, nodes that could route to $1/10$ of the total sensors showed slightly higher number of swaps than in the $1/30$ connection. The reason for this is because in $1/10$ connection, it has more neighbours, hence many potential parents to select. 
+%In term of time taken for swapping, it takes slightly longer to finalise the swap when the network size increases. 
+
+In a smaller network, the sensors are limited by the number of potential parents. This prevents the nodes from swapping as the potential parents might not have any improvement. This can be seen from the number of swaps in a 50 sensors network where the average number of swaps is less than 10. This is because each node has 5 (in $1/10$) and 2 (in $1/30$) potential parents to select from unlike in the 500 sensors network which each has 50 and 17 potential parents. However, as there are more sensors, it takes longer to find the best parents as the swaps will consider all nodes that are within the range.
+
+This experiment does not reflect the condition in the real world where the sensors could be scattered with more or less available range to the other nodes depending on the application; which means more nodes can directly be connected to the LPBR without hops in between. This however, represents a reasonable connection between the nodes to allow swapping and alternative nodes if the current forwarding nodes values are at a minimum for the experiment.
+
+\subsubsection{Impact On The Network Lifetime}
+
+\begin{figure}
+\centering
+%\subfigure[10 nodes]{\label{fig:10maxmin}\includegraphics[width=0.78\textwidth]{treeFigures/maxmin10.pdf}}                
+\subfigure[Connect to 1/10 of total sensors]{\label{fig:1-10}\includegraphics[width=0.45\textwidth]{figures/lifetime1.pdf}}
+\subfigure[Connect to 1/30 of total sensors]{\label{fig:1-30}\includegraphics[width=0.45\textwidth]{figures/lifetime3.pdf}}
+\caption{Comparison of the number of swaps and lifetime in different network scale}
+\label{fig:maxmin}
+\end{figure}
+
+
+Figure \ref{fig:maxmin} shows the improvement in the node thus network lifetime by maximising the minimum and the number of swaps required in 10 runs in 6 networks with 50, 100, 200, 300, 400 and 500 sensors with different degree of connection. 
+The standard deviation on the x axis is slightly shifted to prevent the error bars from overlapping.
+It is observed that the node lifetime decreases with an increase in the number of sensors in the network. The reason for this is in a larger network, there are a higher number of descendants and each connection has its own path values. By taking into account these variables, the number of nodes affect the whole network lifetime. While a higher number of nodes allow more alternative routes, it also consumes more energy as there are more connected nodes. Smaller network however, has limited number of possible swaps which does not improve the network lifetime.
+
+Figure \ref{fig:1-10} shows the number of swaps and the lifetime when the nodes are connected to $1/10$ of the total nodes in the network. 
+In the 50 nodes network, the number of swaps is less than 10 before it reaches the maximum lifetime for the whole network. 
+As the number of sensors in the network increase, it takes more swaps before the tree is optimal. 
+In the 200 nodes network, the number of swaps is around 100 swaps and the lifetime is improved from the minimum of 0.5\% to 3.1\%. In 500 nodes network, it takes more swaps, around 200 swaps for the lifetime to be maximised from 0.3\% to 2.5\%. 
+
+Figure \ref{fig:1-30} shows similar improvement in the $1/30$ connection case. However, it can be seen that the maximum lifetime values in the figure for 100 sensors network is slightly less than in Figure \ref{fig:1-10}. This is because the networks have lesser potential parents and paths to select from. The tree is limited by the number of connections. The other large networks have similar maximum lifetime values in both figures.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.45\textwidth]{figures/maxmin.pdf}
+\caption{Lifetime of MCRP optimal tree}
+\label{fig:nodes-maxmin}
+\end{figure}
+
+Figure \ref{fig:nodes-maxmin} shows the comparison between the initial and optimal tree in both cases. The standard deviation on the x axis is slightly shifted to the left and right to prevent the error bars from overlapping. MCRP swapping prolongs the network lifetime which shows an increase from the initial lifetime. Smaller networks have high initial lifetime values compared to larger networks. However, larger networks have better lifetime improvement than the slight improvement in smaller networks.
+
+In the initial trees, it can be seen that when there are more sensors in the network, the lifetime values are decreasing. This shows the importance of finding the optimal tree as the results showed that the lifetime can be improved by approximately 3\% when initially, in all networks, the minimum sensors have less than 1\% lifetime. The increase enables the network to remain functional slightly longer than initially. 

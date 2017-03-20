@@ -83,49 +83,70 @@ In order to calculate accurate energy consumption for specific packet transmissi
 
 %This section describes the evaluation of the energy consumption as the result of the proposed multichannel protocol. The performance of MCRP is evaluated using the end-to-end energy, the energy consumption over time and the forwarding packets energy.
 
-Using the simulation layout as shown in Figure \ref{fig_simulation}, the energy consumption in MCRP in term of transmission per packet, forwarding packets energy and total energy used are computed to prove that multichannel helps to prolong the network lifetime by using the energy more efficiently than in a single channel network. Each node sends one packet per minute, 350 packets in total throughout the simulation period. Equation \ref{energyModel} is used to calculate the nodes energy consumption. The energy consumption of each node is computed by the LPBR based on the information contained in the transmitted packet. Node 2, 5 and 15 energy usage are selected for comparisons as other nodes show similar result. Node 2 is one hop to LPBR while node 5 is 2 hops and node 15 is 3 hops away. The maximum number of hops in the simulation is 3 hops. The results of a single channel with no interference is used as the base case as it is the ideal energy consumption value. The results are also compared to the energy of a single channel with moderate and extreme interference, and MCRP for multi channels.
+%Using the simulation layout as shown in Figure \ref{fig_simulation}, 
+The energy consumption in MCRP in term of transmission per packet, forwarding packets energy and total energy used are computed to prove that multichannel helps to prolong the network lifetime by using the energy more efficiently than in a single channel network. Each node sends one packet per minute, 350 packets in total throughout the simulation period. Equation \ref{energyModel} is used to calculate the nodes energy consumption. The energy consumption of each node is computed by the LPBR based on the information contained in the transmitted packet. The maximum number of hops in the simulation is 3 hops. The results of a single channel with no interference is used as the base case as it is the ideal energy consumption value. The results are also compared to the energy of a single channel with moderate and extreme interference, and MCRP for multi channels.
+
+%Node 2, 5 and 15 energy usage are selected for comparisons as other nodes show similar result. Node 2 is one hop to LPBR while node 5 is 2 hops and node 15 is 3 hops away. 
 
 \subsubsection{Energy Per Packet Performance}
 
 \begin{figure}
 \centering
-\subfigure[Node 2 energy consumption]{\label{fig:2perPkt}\includegraphics[width=0.45\textwidth]{figures/2EnergyPerPkt.pdf}}                
-\subfigure[Node 5 energy consumption]{\label{fig:5perPkt}\includegraphics[width=0.45\textwidth]{figures/5EnergyPerPkt.pdf}}
-\subfigure[Node 15 energy consumption]{\label{fig:fperPkt}\includegraphics[width=0.45\textwidth]{figures/fEnergyPerPkt.pdf}}
-\caption{Comparison of energy consumption per packet for node 2, 5 and 15}
+\includegraphics[width=0.45\textwidth]{figures/perPktEnergy.pdf}
+\caption{The energy consumption per packet in different number of hops}
 \label{fig:energyPerPkt}
 \end{figure}
 
-Figure \ref{fig:energyPerPkt} shows the transmission energy per packet for node 2, 5 and 15. From the figure, it can be concluded that less transmission energy is used when there is less number of hops. However, in a large scale network, the number of hops cannot be reduced as not all nodes would be in the range or directly connected to the destination node. Thus, the node's next hop should be selected carefully to avoid nodes that have higher interference rate.
+%\begin{figure}
+%\centering
+%\subfigure[Node 2 energy consumption]{\label{fig:2perPkt}\includegraphics[width=0.45\textwidth]{figures/2EnergyPerPkt.pdf}}                
+%\subfigure[Node 5 energy consumption]{\label{fig:5perPkt}\includegraphics[width=0.45\textwidth]{figures/5EnergyPerPkt.pdf}}
+%\subfigure[Node 15 energy consumption]{\label{fig:fperPkt}\includegraphics[width=0.45\textwidth]{figures/fEnergyPerPkt.pdf}}
+%\caption{Comparison of energy consumption per packet for node 2, 5 and 15}
+%\label{fig:energyPerPkt}
+%\end{figure}
 
-Node 2 energy consumption in Figure \ref{fig:2perPkt} for the 5th, 10th, 15th, 20th and 25th packet consumed approximately similar energy in all cases. As node 2 is one hop to the destination (LPBR), it was not affected by the interference except for a slight variation in the single channel with extreme interference case for packet 25. Node 3 gives similar result to node 2 as it is also one hop to the LPBR. 
+Figure \ref{fig:energyPerPkt} shows the transmission energy per packet for nodes that are 1, 2 and 3 hops away from the LPBRs. From the figure, it can be concluded that less transmission energy is used when there is less number of hops. However, in a large scale network, the number of hops cannot be reduced as not all nodes would be in the range or directly connected to the destination node. Thus, the node's next hop should be selected carefully to avoid nodes that have higher interference rate.
 
-Figure \ref{fig:5perPkt} and Figure \ref{fig:fperPkt} show higher values of energy that a packet requires from the sender (node 5 and 15) to LPBR through 2 and 3 hops. 
+In the 1 hop case, it can be seen that the nodes consumed approximately similar energy in all cases. As the nodes are one hop to the destination (LPBR), it was not affected by the interference except for a slight variation in the single channel with extreme interference case. 
+%Node 3 gives similar result to node 2 as it is also one hop to the LPBR. 
+%Figure \ref{fig:5perPkt} and Figure \ref{fig:fperPkt} show higher values of energy that a packet requires from the sender (node 5 and 15) to LPBR through 2 and 3 hops. 
+Nodes that are 2 and 3 hops away show higher values of per packet energy transmission.
 This is because of the interference near to the nodes. The nodes are unable to detect the exact wake-up time for the nodes thus, the nodes have to transmit in a longer period to ensure the packet gets transmitted. In the one hop graph, the energy can be kept at minimum because the LPBR is always awake to accept packet as it is fully powered unlike the other nodes that have to switch the radio off when there are no transmissions and receptions taking place to save the energy.
 
-In both graphs, MCRP shows approximately similar transmission energy consumption to the base case. The transmission energy for a single channel with moderate and extreme interference is slightly higher compared to MCRP in 2 hops. In 3 hops, the energy per packet in the single channel with moderate and extreme interference are much higher than the energy used by the base case and MCRP. This shows that the energy per packet depends on the number of hops and the interference that affect the routes. Multichannel helps to mitigate the effect of interference, thus reducing the transmission energy taken to send a packet.
+In the 1 and 2 hops, MCRP shows approximately similar transmission energy consumption to the base case. 
+%The transmission energy for a single channel with moderate and extreme interference is slightly higher compared to MCRP in 2 hops. 
+In 3 hops, the energy per packet in the single channel with moderate and extreme interference are much higher than the energy used by the base case and MCRP. This shows that the energy per packet depends on the number of hops and the interference that affect the routes. Multichannel helps to mitigate the effect of interference, thus reducing the transmission energy taken to send a packet especially when there are several hops involved.
 
-\subsubsection{Energy Over Time Performance}
-
-\begin{figure}
-\centering
-\subfigure[Node 2 energy consumption]{\label{fig:2total}\includegraphics[width=0.45\textwidth]{figures/2Energy.pdf}}      
-\subfigure[Node 5 energy consumption]{\label{fig:5total}\includegraphics[width=0.45\textwidth]{figures/5Energy.pdf}}          
-\subfigure[Node 15 energy consumption]{\label{fig:ftotal}\includegraphics[width=0.45\textwidth]{figures/fEnergy.pdf}}
-\caption{Comparison of total energy consumption for node 2, 5 and 15}
-\label{fig:energyTotal}
-\end{figure}
-
-Figure \ref{fig:energyTotal} shows the graphs of the three nodes total energy consumption that the nodes took to send 25 packets (approximately 40 minutes) including retransmissions and control packets energy. Figure \ref{fig:2total} shows node 2 energy consumption where it can be seen that in all cases, the total energy taken are approximately similar with a small increase over time. The single channel with extreme interference case however, requires more energy consumption than in other cases. Figure \ref{fig:5total} shows higher increase in energy usage over time in all cases. The reason for this is because node 5 has 2 other nodes that are using it as a forwarder. Node 5 (2 hops) uses higher energy when forwarding packet to LPBR compared to node 2 (1 hop). Figure \ref{fig:ftotal} shows lower energy consumption for node 15 compared to node 5 because node 15 does not act as a forwarder.
+%\subsubsection{Energy Over Time Performance}
+\subsubsection{Total Energy Consumption}
 
 \begin{figure}
 \centering
 \includegraphics[width=0.45\textwidth]{figures/totalEnergy.pdf}
-\caption{Simulation nodes total energy}
+\caption{Simulation nodes total energy consumption}
 \label{fig:allNodesEnergy}
 \end{figure}
 
-Figure \ref{fig:allNodesEnergy} shows the total energy consumption for all nodes in the simulation. Node 2 and node 3 are one hop to LPBR, nodes 4-7 are 2 hops, and other nodes are 3 hops away. For most nodes, the energy consumption is slightly improved when using MCRP than a single channel with interference. This improvement can be clearly seen in the 2 hops nodes as these nodes use more energy during interference for retransmissions. If the retransmissions fail, the packet is dropped and the energy used during the retransmissions is wasted. The total energy consumption graph shows all energy from the packet transmission including failed packet energy.
+%\begin{figure}
+%\centering
+%\subfigure[Node 2 energy consumption]{\label{fig:2total}\includegraphics[width=0.45\textwidth]{figures/2Energy.pdf}}      
+%\subfigure[Node 5 energy consumption]{\label{fig:5total}\includegraphics[width=0.45\textwidth]{figures/5Energy.pdf}}          
+%\subfigure[Node 15 energy consumption]{\label{fig:ftotal}\includegraphics[width=0.45\textwidth]{figures/fEnergy.pdf}}
+%\caption{Comparison of total energy consumption for node 2, 5 and 15}
+%\label{fig:energyTotal}
+%\end{figure}
+
+%Figure \ref{fig:energyTotal} shows the graphs of the three nodes total energy consumption that the nodes took to send 25 packets (approximately 40 minutes) including retransmissions and control packets energy. Figure \ref{fig:2total} shows node 2 energy consumption where it can be seen that in all cases, the total energy taken are approximately similar with a small increase over time. The single channel with extreme interference case however, requires more energy consumption than in other cases. Figure \ref{fig:5total} shows higher increase in energy usage over time in all cases. The reason for this is because node 5 has 2 other nodes that are using it as a forwarder. Node 5 (2 hops) uses higher energy when forwarding packet to LPBR compared to node 2 (1 hop). Figure \ref{fig:ftotal} shows lower energy consumption for node 15 compared to node 5 because node 15 does not act as a forwarder.
+
+Figure \ref{fig:allNodesEnergy} shows the total energy consumption in the simulation including retransmissions and control packets energy. 
+%Node 2 and node 3 are one hop to LPBR, nodes 4-7 are 2 hops, and other nodes are 3 hops away. 
+In 1 hop, it can be seen that in all cases, the total energy taken are approximately similar with a small standard deviation. The single channel with extreme interference case however, requires higher energy consumption than in other cases.
+In 2 hops, it shows high increase in energy usage. The reason for this is because the 2 hops nodes are used as forwarding nodes. The 3 hops nodes do not act as forwarding nodes thus the reason for the lower total energy consumption.
+%%%FWD EXPLANATION - The 1 hop nodes consumed less energy than a 2 hops nodes even though the nodes are also acting as forwarders because the LPBR is always on and ready to accept the packets at any time unlike in the 2 hops where the intermediate nodes need to be awake. 
+%Node 5 (2 hops) uses higher energy when forwarding packet to LPBR compared to node 2 (1 hop). Figure \ref{fig:ftotal} shows lower energy consumption for node 15 compared to node 5 because node 15 does not act as a forwarder.
+The energy consumption is improved when using MCRP than a single channel with interference. This improvement can be clearly seen in the 3 hops nodes as these nodes use more energy during interference for retransmissions. If the retransmissions fail, the packet is dropped and the energy used during the retransmissions is wasted. The total energy consumption graph shows all energy spent when the nodes are awake, including forwarding and failed packets transmission.
+%from the packet transmission including failed packet energy.
 
 \subsubsection{Forwarding Energy Analysis}
 
@@ -136,10 +157,15 @@ Figure \ref{fig:allNodesEnergy} shows the total energy consumption for all nodes
 \label{fig:allNodesFwdEnergy}
 \end{figure}
 
-Figure \ref{fig:allNodesFwdEnergy} shows the energy used in forwarding packets for nodes 2-7. The other nodes in the simulation do not forward packets. Node 2 and 3 use less energy than nodes 4-7 as the nodes only need to check if the channel is being use by the other node before it can forward to the LPBR. LPBR waits for incoming packet thus the nodes could send the packet with less waiting time as LPBR radio is always on. Based on the simulation layout in Figure \ref{fig_simulation}, node 4 and 5 forward packets to node 2 while node 6 and 7 to node 3 as their next hop. Node 4-7 use higher energy than node 2 and 3 in forwarding packets as the nodes have more packets (from the children) to be forwarded. In order to be able to forward the packets, the nodes have to be awake for longer time and ensure the next hop is also awake and ready to accept the packets. Thus forwarding takes more energy consumption than an end to end packet transmission. By increasing the number of nodes thus children, the nodes will use more energy in order to forward the packets. The forwarding energy consumption contributes to the most energy used by the nodes. MCRP helps to reduce the energy consumption which can be seen in node 4 and 6 results than in a single channel. In the base case, the energy consumption varies as the nodes are interfering with each other even without external interference during transmissions.
+Figure \ref{fig:allNodesFwdEnergy} shows the energy used in forwarding packets for the 1 and 2 hops nodes. The 3 hops nodes in the simulation do not forward packets. The 1 hop nodes use less energy than the 2 hops nodes as the nodes only need to check if the channel is being use by the other node before it can forward to the LPBR. LPBR waits for incoming packet thus the nodes could send the packet with less waiting time as LPBR radio is always on. 
+%Based on the simulation layout in Figure \ref{fig_simulation}, node 4 and 5 forward packets to node 2 while node 6 and 7 to node 3 as their next hop. Node 4-7 use higher energy than node 2 and 3 in forwarding packets as the nodes have more packets (from the children) to be forwarded. 
+In order to be able to forward the packets, the nodes have to be awake for longer time and ensure the intermediate node is also awake and ready to accept the packets. Thus forwarding could require more energy consumption than an end to end packet transmission. By increasing the number of nodes thus children, the nodes will use more energy in order to forward the packets. The forwarding energy consumption contributes to the most energy used by the nodes. 
+%MCRP helps to reduce the energy consumption which can be seen in node 4 and 6 results than in a single channel. 
+Even though MCRP does not show a lot of improvement, it shows lower deviation compared to the single channel with extreme interference.
+In the base case, the energy consumption varies as the nodes are interfering with each other even without external interference during transmissions.
 
 %/////
 
 %This chapter presents the estimated energy consumption calculation. Contiki implemented Powertrace which is a software based energy estimation. MCRP uses Powertrace which tracks the duty cycle and uses the values to measure the estimated energy consumption. 
-The simulation results showed that MCRP consumes less energy than in other cases when there is interference as the effect of multichannel. In order to increase the energy efficiency thus network lifetime, MCRP needs to reconstruct the topology based on the energy consumption, residual energy of the nodes and the link conditions gradually to avoid breaking any current connectivity.
+The simulation results showed that MCRP consumes less energy than in other cases when there is interference as the effect of multichannel. MCRP has similar energy consumption values as in the base case, a single channel without interference. This shows that multichannel helps to reduce the energy wasted due to interference. In order to increase the energy efficiency thus network lifetime, MCRP needs to reconstruct the topology based on the energy consumption, residual energy of the nodes and the link conditions gradually to avoid breaking any current connectivity.
 %The next chapter explains MCRP tree optimisation in details.

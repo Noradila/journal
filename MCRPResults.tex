@@ -34,12 +34,13 @@ In the interference state, the interference node generates packets for a time th
 Multiple channels interference is used in the simulation to show the hypothesis that MCRP can help avoid interference. The scenario that is considered is where ContikiMAC with RPL system is subject to interference on its channel after set up has successfully completed so the RPL set up is allowed to complete before interference begins.
 
 The protocol performance in loss over time in the presence of interference is observed. The level of interference used in term of the \textit{clear\_time} is 100\% for no interference, 75\% for mild, 50\% for moderate and 25\% for extreme interference. The percentage represents the ratio of the time the channel is clear for transmission.
-Two multiple channels interference scenarios are considered; (i) extreme and no interference rate on 8 channels each and (ii) extreme, moderate, mild and no interference rate on 4 channels each.
-
-The interference channels are randomly chosen from the available 16 channels and the same interference channels and rates are used throughout the experiments. However, channel 26 is kept clear from interference in order to ensure RPL set up is unaffected. In scenario 1, the interference rates are fixed to extreme and no interference to observe the effect it has on the channel changing decisions. In scenario 2, the interference rates are vary to observe how MCRP copes in deciding a channel when there is more interference than scenario 1 but with less interference intensity. 
-
+%Two multiple channels interference scenarios are considered; (i) extreme and no interference rate on 8 channels each and (ii) extreme, moderate, mild and no interference rate on 4 channels each.
+The interference channels are randomly chosen from the available 16 channels.
+% and the same interference channels and rates are used throughout the experiments. 
+However, channel 26 is kept clear from interference in order to ensure RPL set up is unaffected. 
+%In scenario 1, the interference rates are fixed to extreme and no interference to observe the effect it has on the channel changing decisions. In scenario 2, the interference rates are vary to observe how MCRP copes in deciding a channel when there is more interference than scenario 1 but with less interference intensity. 
 The simulation runs for a duration of 45-60 minutes to send 210-560 packets. When the nodes are switched on for the first time, all nodes are initialised to channel 26, the default channel for Contiki MAC layer. RPL is allowed five minutes to set up (which is ample time). RPL topology is formed in a minute. The simulation waits for another five minutes to allow trickle timer to double the interval length so that RPL control messages are not being sent frequently. The multichannel protocol is then runs for 25 minutes. In the 15 nodes simulation, the protocol takes 20-25 minutes to run the channel change set up. Another 5 minutes wait time is allowed if retransmissions happen. 
-In a single channel simulation, all the nodes are changed to channel 22 after 5 minutes of RPL set up time. This allows RPL to have enough time to discover all nodes to form an optimised topology. The topology formation does not form completely if the interference node interferes from the beginning. 
+%In a single channel simulation, all the nodes are changed to channel 22 after 5 minutes of RPL set up time. This allows RPL to have enough time to discover all nodes to form an optimised topology. The topology formation does not form completely if the interference node interferes from the beginning. 
 
 The interference node starts sending packets to interfere after 3 minutes the system is switched on so that the interference channel is involve in the channel changes decision. It is proven that the protocol tries to avoid changing to the interference channel through time out and probing failures. After 30 minutes, the client nodes will send a normal packet periodically every 30-60 seconds to LPBR. This is done in order to avoid collision of the nodes sending at the same time. 
 
@@ -68,46 +69,47 @@ Figure \ref{fig:interference} shows the results in simulation for ContikiMAC wit
 
 In the single channel, the node does not have enough time to recover from the interference to retransmit and drops all packets. In the extreme interference case, it shows that there are more packets drop over time and it stops receiving packets as it doesn't have enough buffer to store the incoming packet and the channel becomes congested. However, as the interference rate increases (less interference), the single channel performance improves as it has more time to recover.
 
-%%The results from the single channel with interference is compared with the multichannel with the same interference rate of 75\% (mild), 50\% (moderate) and 25\% (extreme). The test is done to evaluate MCRP behaviour in different interference rate and to compare the result with a single channel case. 
-
-%Figure \ref{fig:sminterference} shows the averaged results from ten runs that were done. It can be observed that during high and moderate interference, if LPBR tries to send a channel change value that is the same channel as the interference, the request will either timed out or if it succeeds, the probing messages received are less than a threshold that allows for the node to change its listening channel to the new channel. This is as expected as MCRP checks the channel each time before deciding on the new channel to avoid interference channel. By doing this, it ensure that the node's listening channel is a good channel. This enable the use of all available channels without blacklisting any channel until it is sure that it is a bad channel through the probing process. The channel quality table is built at the LPBR that over time can be used to learn good and bad channels based on several probing processes. MCRP avoids the interference channel which as a result, resulted in less loss than in a single channel case. 
-
-%In the single channel, the node does not have enough time to recover from the interference to retransmit and drops all packets. Figure \ref{fig:extreme} shows that there are more packets drop over time and it stops receiving packets as it doesn't have enough buffer to store the incoming packet and the channel becomes congested. However, as the interference rate increases (less interference), the single channel performance improves as it has more time to recover.
-
-%In the mild interference case, all probing messages are received even though there is interference in that channel. This means that the channel can be used for transmission. As the interference rate is mild, all packets are received. This is also the case with a single channel. The interference does not affect the transmissions as the interference is not frequent enough. The node has enough time to recover from the interference through retransmissions. However, the interference would slightly effect the packet transmission over time. The channel change processes should run periodically to avoid this from happening.
-
 \begin{figure}
 \centering
-\includegraphics[width=0.45\textwidth]{figures/multi_channel.pdf}
-\caption{Level of packet loss for scenario 1 and scenario 2 using multichannel}
-\label{fig:multi_interference}
+\subfigure[Fixed layout]
+{\label{fig:randomInterference}\includegraphics[width=0.45\textwidth]{figures/ri.pdf}}
+\subfigure[Random layout]
+{\label{fig:randomAll}\includegraphics[width=0.45\textwidth]{figures/ra.pdf}}
+\caption{Level of packet loss for MCRP and Orchestra}
+\label{fig:layouts}
 \end{figure}
 
-To evaluate MCRP capabilities to cope with interference from many sources, thus channels, and to compare to a single channel, two interference scenarios are considered.
-In scenario 1 half the channels (including the original channel) have no
-interference at all and half the channels have extreme interference.
-In scenario 2, four channels (including the original channel) have no
-interference, four have mild, four moderate and four extreme interference.
-Figure \ref{fig:multi_interference} shows multichannel results for these
-two scenarios. In scenario 1 the protocol performs extremely well, the packet loss is near zero and the protocol successfully detects channels with interference.
-Scenario 2 has similar results as in scenario 1. The protocol does well at reducing the effects of interference and could detect moderate and mild interference.
-%Figure \ref{fig:sminterference} shows the averaged results from ten runs that were done. It can be observed that during high and moderate interference, if LPBR tries to send a channel change value that is the same channel as the interference, the request will either timed out or if it succeeds, the probing messages received are less than a threshold that allows for the node to change its listening channel to the new channel. This is as expected as MCRP checks the channel each time before deciding on the new channel to avoid interference channel. By doing this, it ensure that the node's listening channel is a good channel. This enable the use of all available channels without blacklisting any channel until it is sure that it is a bad channel through the probing process. The channel quality table is built at the LPBR that over time can be used to learn good and bad channels based on several probing processes. 
-MCRP avoids the interference channel which as a result, resulted in less loss than in a single channel case. 
 
-In scenario 2 where there are mild interference channels, most of the probing messages on those channels are received. This means that the channels can be used for transmission. This is also the case with a single channel. The interference does not affect the transmissions as the interference is not frequent enough. The node has enough time to recover from the interference through retransmissions. However, the interference would slightly effect the packet transmission over time. 
-%The channel change processes should run periodically to avoid this from happening.
+To evaluate MCRP capabilities to cope with interference from many sources, thus channels, and to compare to an existing multichannel protocol Orchestra, the simulations were run where (i) the layout is fixed while the interference channels are chosen by random and (ii) all the nodes including the interference nodes are placed randomly. 
+In the experiments, Orchestra uses channel hopping on all 16 channels.  
 
-\begin{figure}
-\centering
-\includegraphics[width=0.45\textwidth]{figures/tsch1.pdf}
-\caption{Level of packet loss on testbed for MCRP and Orchestra}
-\label{fig:orchestra_sim}
-\end{figure}
+Figure \ref{fig:layouts} show MCRP and Orchestra results for the fixed and random nodes layouts.
+MCRP performs extremely well in both scenarios as the average packet reception rates are between 90\%-100\% and the protocol successfully detects the channels with interference.
+Orchestra has higher packet loss compared to MCRP, showing a maximum of 40\% packet loss on average as the channels with interference are being used for transmission periodically.
+%around 90-100\% received packet as it hops on all channels which includes the channels that have higher interference. 
+In comparison, MCRP selects certain channels to change into after checking the channels condition which gives MCRP a smaller number of packet loss.
+MCRP avoids the interference channel while Orchestra hops to the next channel in the next iteration for transmission.
 
-To prove that MCRP also performs better than not only single channel protocol, MCRP is compared against Orchestra. In the experiment, Orchesta uses channel hopping on all 16 channels. Figure \ref{fig:orchestra_sim} shows the result from scenario 2 on both MCRP and Orchestra. Orchestra has a low packet loss showing around 90-100\% received packet as it hops on all channels which includes the channels that have higher interference. In comparison, MCRP selects certain channels to change into after checking the channels condition which gives MCRP nearly zero packet loss. Orchestra shows good result as it hops to another channel in the next iteration which allows it to move from the interference channel faster to be able to keep the loss rate to a minimum. While Orchestra has high proportion of received packets, MCRP shows near 100\% packet reception. Orchestra shows no deviation as the channel values are fixed for each iteration thus giving the same results each time unlike MCRP where the channels are selected at random before it is used.
+%single channel, two interference scenarios are considered.
+%In scenario 1 half the channels (including the original channel) have no interference at all and half the channels have extreme interference.
+%In scenario 2, four channels (including the original channel) have no interference, four have mild, four moderate and four extreme interference. Figure \ref{fig:multi_interference} shows multichannel results for these two scenarios. In scenario 1 the protocol performs extremely well, the packet loss is near zero and the protocol successfully detects channels with interference.
+%Scenario 2 has similar results as in scenario 1. The protocol does well at reducing the effects of interference and could detect moderate and mild interference.
+%MCRP avoids the interference channel which resulted in less loss than in Orchestra. 
 
-%In MiCMAC \cite{micmac}, it is stated that MiCMAC has a transmission success rate of 99\% when using four channels. However, when more than four channels are used (8 or 16 channels), MiCMAC performance degrades to approximately 88\% (16 channels) due to interference channels. The interference model that MiCMAC uses is different than in this experiment. They compare the result with Chrysso where Chrysso has a transmission success rate of approximately 88\% for 4 and 8 channels and suffers greatly in the case of 16 channels with 60\% success rate.
-%MCRP on the other hand, shows greatly reduced loss rate with any number of channels at approximately 99\%.
+%Orchestra shows good result as it hops to another channel in the next iteration which allows it to move from the interference channel faster to be able to keep the loss rate to a minimum. While Orchestra has high proportion of received packets, MCRP shows near 100\% packet reception. 
+%Orchestra shows no deviation as the channel values are fixed for each iteration thus giving the same results each time unlike MCRP where the channels are selected at random before it is used.
+
+%In scenario 2 where there are mild interference channels, most of the probing messages on those channels are received. This means that the channels can be used for transmission. This is also the case with a single channel. The interference does not affect the transmissions as the interference is not frequent enough. The node has enough time to recover from the interference through retransmissions. However, the interference would slightly effect the packet transmission over time. 
+
+%\begin{figure}
+%\centering
+%\includegraphics[width=0.45\textwidth]{figures/tsch1.pdf}
+%\caption{Level of packet loss on testbed for MCRP and Orchestra}
+%\label{fig:orchestra_sim}
+%\end{figure}
+
+%To prove that MCRP also performs better than not only single channel protocol, MCRP is compared against Orchestra. In the experiment, Orchesta uses channel hopping on all 16 channels. Figure \ref{fig:orchestra_sim} shows the result from scenario 2 on both MCRP and Orchestra. Orchestra has a low packet loss showing around 90-100\% received packet as it hops on all channels which includes the channels that have higher interference. In comparison, MCRP selects certain channels to change into after checking the channels condition which gives MCRP nearly zero packet loss. Orchestra shows good result as it hops to another channel in the next iteration which allows it to move from the interference channel faster to be able to keep the loss rate to a minimum. While Orchestra has high proportion of received packets, MCRP shows near 100\% packet reception. Orchestra shows no deviation as the channel values are fixed for each iteration thus giving the same results each time unlike MCRP where the channels are selected at random before it is used.
+
 
 \subsubsection{Setup Overhead}
 Obviously the system of changing channels and probing to see if a channel is free of interference introduces a certain amount of overhead into

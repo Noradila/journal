@@ -1,4 +1,4 @@
-\subsection{Simulation Performance Evaluation}
+\subsection{Emulation Performance Evaluation}
 
 %This chapter presents the evaluation of MCRP. The experiment set ups for Cooja simulation is explained below. In Cooja simulation, interference is introduced. MCRP is evaluated using an end-to-end packet delivery performance metric. The results from the experiments are presented and discussed. 
 
@@ -12,12 +12,12 @@
 %\label{fig_simulation}
 %\end{figure}
 
-MCRP is evaluated in the Cooja simulated environment. 
+MCRP is evaluated in the Cooja network emulator. 
 %Figure \ref{fig_simulation} shows the layout of the network.
 The network consists of 31 nodes which are used to run the simulation where one node is used as the border router node, 16 interference nodes, and 14 duty cycled nodes that act as UDP clients to send packets to LPBR spanning over 20-30 metres between each node. RPL border router is used as LPBR in order to move most processing decisions on a PC as it has more RAM and better processing capabilities than a sensor.
 The border router also acts as the root of the tree.
 
-In Cooja simulation, an interference model is used as simulation to allow full control over the test environment and the experiments are repeatable. Although the interference model does not fully mimic the behaviour of the real world interference, it enables MCRP performance to be tested in various conditions when the channel performance is degraded and to have a better understanding of the performance.
+In Cooja emulator, an interference model is used to allow full control over the test environment and the experiments are repeatable. Although the interference model does not fully mimic the behaviour of the real world interference, it enables MCRP performance to be tested in various conditions when the channel performance is degraded and to have a better understanding of the performance.
 
 %MCRP is evaluated in the Cooja simulated environment with emulation of TMote sky nodes that feature the CC2420 transceiver, a 802.15.4 radio. The nodes run on IPv6, using UDP with standard RPL and 6LoWPAN protocols. Figure \ref{fig_simulation} shows the layout of the network. The network consists of 31 nodes which are used to run the simulation where one node is used as the border router node, 16 interference nodes, and 14 duty cycled nodes that act as UDP clients to send packets to LPBR spanning over 20-30 metres between each node. RPL border router is used as LPBR in order to move most processing decisions on a PC as it has more RAM and better processing capabilities than a sensor. TelosB sensor has limited RAM and ROM of 10K bytes and 48K bytes of flash memory \cite{telosb-datasheet}. By using a border router, this allows channel changing to be decided in real time without draining the memory and battery on a sensor. The border router also acts as the root of the tree.
 
@@ -39,7 +39,7 @@ The interference channels are randomly chosen from the available 16 channels.
 % and the same interference channels and rates are used throughout the experiments. 
 However, channel 26 is kept clear from interference in order to ensure RPL set up is unaffected. 
 %In scenario 1, the interference rates are fixed to extreme and no interference to observe the effect it has on the channel changing decisions. In scenario 2, the interference rates are vary to observe how MCRP copes in deciding a channel when there is more interference than scenario 1 but with less interference intensity. 
-The simulation runs for a duration of 45-60 minutes to send 210-560 packets. When the nodes are switched on for the first time, all nodes are initialised to channel 26, the default channel for Contiki MAC layer. RPL is allowed five minutes to set up (which is ample time). RPL topology is formed in a minute. The simulation waits for another five minutes to allow trickle timer to double the interval length so that RPL control messages are not being sent frequently. The multichannel protocol is then runs for 25 minutes. In the 15 nodes simulation, the protocol takes 20-25 minutes to run the channel change set up. Another 5 minutes wait time is allowed if retransmissions happen. 
+The emulation runs for a duration of 45-60 minutes to send 210-560 packets. When the nodes are switched on for the first time, all nodes are initialised to channel 26, the default channel for Contiki MAC layer. RPL is allowed five minutes to set up (which is ample time). RPL topology is formed in a minute. The simulation waits for another five minutes to allow trickle timer to double the interval length so that RPL control messages are not being sent frequently. The multichannel protocol is then runs for 25 minutes. In the 15 nodes simulation, the protocol takes 20-25 minutes to run the channel change set up. Another 5 minutes wait time is allowed if retransmissions happen. 
 %In a single channel simulation, all the nodes are changed to channel 22 after 5 minutes of RPL set up time. This allows RPL to have enough time to discover all nodes to form an optimised topology. The topology formation does not form completely if the interference node interferes from the beginning. 
 
 The interference node starts sending packets to interfere after 3 minutes the system is switched on so that the interference channel is involve in the channel changes decision. It is proven that the protocol tries to avoid changing to the interference channel through time out and probing failures. After 30 minutes, the client nodes will send a normal packet periodically every 30-60 seconds to LPBR. This is done in order to avoid collision of the nodes sending at the same time. 
@@ -61,11 +61,11 @@ The simulations are repeated ten times. In all plots, the mean value of the ten 
 \begin{figure}
 \centering
 \includegraphics[width=0.45\textwidth]{figures/single_channel.pdf}
-\caption{Level of packet loss for mild, moderate and extreme interference levels using single channel}
+\caption{Emulations: Level of packet loss for mild, moderate and extreme interference levels using single channel}
 \label{fig:interference}
 \end{figure}
 
-Figure \ref{fig:interference} shows the results in simulation for ContikiMAC with RPL protocol. It can be seen that the level of packet loss varies considerably between experiments (the error bars are always large). It can also be seen that even for mild interference there is considerable loss and this gets worse as time proceeds. In the extreme interference case the loss always goes up until no packets are received. For mild interference the system evolves until it is losing around 20\% of packets but this can increase.
+Figure \ref{fig:interference} shows the results in emulation for ContikiMAC with RPL protocol. It can be seen that the level of packet loss varies considerably between experiments (the error bars are always large). It can also be seen that even for mild interference there is considerable loss and this gets worse as time proceeds. In the extreme interference case the loss always goes up until no packets are received. For mild interference the system evolves until it is losing around 20\% of packets but this can increase.
 
 In the single channel, the node does not have enough time to recover from the interference to retransmit and drops all packets. In the extreme interference case, it shows that there are more packets drop over time and it stops receiving packets as it doesn't have enough buffer to store the incoming packet and the channel becomes congested. However, as the interference rate increases (less interference), the single channel performance improves as it has more time to recover.
 
@@ -75,12 +75,12 @@ In the single channel, the node does not have enough time to recover from the in
 {\label{fig:randomInterference}\includegraphics[width=0.45\textwidth]{figures/ri.pdf}}
 \subfigure[Random layout]
 {\label{fig:randomAll}\includegraphics[width=0.45\textwidth]{figures/ra.pdf}}
-\caption{Level of packet loss for MCRP and Orchestra}
+\caption{Emulations: Level of packet loss for MCRP and Orchestra}
 \label{fig:layouts}
 \end{figure}
 
 
-To evaluate MCRP capabilities to cope with interference from many sources, thus channels, and to compare to an existing multichannel protocol Orchestra, the simulations were run where (i) the layout is fixed while the interference channels are chosen by random and (ii) all the nodes including the interference nodes are placed randomly. 
+To evaluate MCRP capabilities to cope with interference from many sources, thus channels, and to compare to an existing multichannel protocol Orchestra, the emulations were run where (i) the layout is fixed while the interference channels are chosen by random and (ii) all the nodes including the interference nodes are placed randomly. 
 In the experiments, Orchestra uses channel hopping on all 16 channels.  
 
 Figure \ref{fig:layouts} show MCRP and Orchestra results for the fixed and random nodes layouts.
@@ -133,14 +133,14 @@ The channel reset is done in these cases: (i) the queue buffer is empty, (ii) be
 \hfill        
 \subfigure[Reconstructed tree when node 3 is undetected]{\label{fig:r2}\includegraphics[trim=2cm 16cm 2cm 2cm, clip=true, totalheight=0.12\textheight]
 {figures/reconnection2.pdf}}
-\caption{A simple simulation layout to test the tree reconnection}
+\caption{A simple tree to emulate the tree reconnection}
 \label{fig:reconnectionLayout}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[width=0.45\textwidth]{figures/reconnect.pdf}
-\caption{Reconnection time taken for MCRP and single channel}
+\caption{Emulations: Reconnection time taken for MCRP and single channel}
 \label{fig:reconnection}
 \end{figure}
 

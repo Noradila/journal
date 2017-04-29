@@ -15,7 +15,7 @@ l_i = \frac{e_i}{{(d_i + 1)t_{ip(i)} + \sum_{j \in c(i)} (d_j + 1)t_{ji}}}
 \label{optimalEq}
 \end{equation}
 
-Equation \ref{optimalEq} shows MCRP optimal tree calculation where $l_i$ is the node $i$ current lifetime based on the node's remaining energy $e_i$ (in percentage), $d_i$ is the number of descendants, $t_{ij}$ represents the number of transmissions on average from node $i$ to node $j$, $p(i)$ refers to the parent of $i$ and $c(i)$ is node $i$ set of children.
+Equation \ref{optimalEq} shows MCRP optimal tree calculation where $l_i$ is the node $i$ current lifetime based on the node's remaining energy $e_i$ (in percentage), $d_i$ is the number of descendants, $t_{ji}$ represents the number of transmissions on average from node $j$ to node $i$, $p(i)$ refers to the parent of $i$ and $c(i)$ is node $i$ set of children.
 
 \begin{algorithm}
 \caption{Pseudo-code for MCRP optimal tree algorithm}

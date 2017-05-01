@@ -10,14 +10,19 @@ MCRP implements Contiki's existing energy module, Powertrace.
 %This chapter describes the implementation of Contiki existing energy module. It also shows the energy consumption estimation computation and the implementation in MCRP. The energy consumption in MCRP is evaluated in term of the end-to-end and forwarding packets energy. The results showed that MCRP consumes less energy than a single channel with interference.
 Powertrace uses the software based on-line energy estimation mechanism \cite{dunkels2007software} to estimate the node's current energy consumption in real time. 
 %The on-line energy estimation is implemented in Contiki OS. 
-The energy estimation module uses time measurements that can be directly obtained from the microprocessor on-chip timer when the component is switched on to produce a time stamp. The time difference from when the component was on and when it later is switched off is computed. The current draw of the component listed in the TelosB data sheet is used to compute the total energy consumption estimation. 
+The energy estimation module uses time measurements that can be directly obtained from the microprocessor on-chip timer when the component is switched on to produce a time stamp. The time difference from when the component was on and when it later is switched off is computed. The current draw of the component listed in the TelosB data sheet is used to compute the total energy consumption estimation, $E$. 
 
 \begin{equation}
-E = (I_{m}t_{m} + I_{l}t_{l} + I_{tx}t_{tx} + I_{r}t_{r} +  \sum_{i}I_{c_{i}}t_{c_{i}}) \times\frac{V}{32768}
+E = (I_{m}t_{m} + I_{l}t_{l} + I_{tx}t_{tx} + I_{r}t_{r} +  \sum_{i}I_{c_{i}}t_{c_{i}}) \times{V}
 \label{energyModel}
 \end{equation}
 
-Equation \ref{energyModel} shows the energy consumption model given in \cite{dunkels2007software}, $E$ in $mJ$ where $V$ is the supply voltage, $I$ the current draw and $t$ the active time computed in Powertrace for $m$ the microprocessor, $l$ the microprocessor in low power mode, $tx$ the communication device in transmit mode, $r$ the communication device in receive mode and $c_{i}$ for other components such as sensors and LEDs. The values of $I_{m}$, $I_{l}$, $I_{tx}$ and $I_{r}$ are device dependent. In this paper, $I_{m}$ is $1.8 mA$, $I_{l}$ is $0.0545 mA$, $I_{tx}$ is $19.5 mA$ and $I{r}$ is $21.8 mA$. The on-chip timer has the value of $32768Hz$.
+%E = (I_{m}t_{m} + I_{l}t_{l} + I_{tx}t_{tx} + I_{r}t_{r} +  \sum_{i}I_{c_{i}}t_{c_{i}}) \times\frac{V}{32768}
+
+Equation \ref{energyModel} shows the energy consumption model given in \cite{dunkels2007software} 
+%$E$ in $mJ$ 
+where $V$ is the supply voltage, $I$ is the current draw and $t$ is the active time computed in Powertrace for $m$ the microprocessor, $l$ the microprocessor in low power mode, $tx$ the communication device in transmit mode, $r$ the communication device in receive mode and $c_{i}$ for other components such as sensors and LEDs. The values of $I_{m}$, $I_{l}$, $I_{tx}$ and $I_{r}$ are device dependent. 
+%In this paper, $I_{m}$ is $1.8 mA$, $I_{l}$ is $0.0545 mA$, $I_{tx}$ is $19.5 mA$ and $I{r}$ is $21.8 mA$. The on-chip timer has the value of $32768Hz$.
 %Throughout this thesis, Equation \ref{energyModel2} is used giving the total energy $E$ in $mJ$, the current in $mA$ and $32768Hz$ is the on-chip timer for one second runtime on a $3V$ sensor.
 
 %\begin{equation}

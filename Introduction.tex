@@ -22,23 +22,37 @@
 % (should never be an issue)
 
 %CHALLENGES AND ISSUES
-\IEEEPARstart{W}{ireless} sensor networks (WSNs) are widely used in various kinds of applications to collect data and measurements data from the sensors. The sensors are mainly deployed to track and monitor in different types of environments such as on the land, underground and underwater for continuous sensing, event detection, location sensing and other control over the different components of the sensing device. It is increasingly important to have reliable and energy efficient WSNs that could function for years as sensors are easily deployed in areas that are difficult to reach such as for volcanic monitoring, forest fire detection and flood detection. WSNs could help to enable automated services in smart cities to improve the environment quality, increase the energy saving and improve the lifestyle as WSNs simplify and reduce manual and labour work to automated systems. This is because sensors can be densely deployed, easy to install and require minimal maintenance over a period of time. 
-
-Many energy efficient protocols have been proposed in term of the Medium Access Control (MAC) protocols, routing protocols, power control and energy harvesting to overcome the problems of interference to maximise the throughput and the sensors energy to prolong the network lifetime. 
-MAC and routing protocols are the main protocols that control the network energy consumption to allow the network to remain functional for a longer period of time. While the other proposed solutions could increase the sensors residual energy, the energy saving depends on the MAC and routing protocols.
-There have been many proposals in multichannel MAC protocols that show promising results but none is widely implemented yet. In MAC protocol, the energy consumption can be reduced by adjusting the radio duty cycle to allow the sensors to be in the sleep mode when they are not used and to transmit on channels that have less interference to increase the likeliness of data success.
-
-To further improve the efficiency, routing protocols are responsible to ensure high success rate in data routing from the sender to the intended receiver across the network. 
-The routing protocols are required to manage and maintain the routes to ensure reliable communications between the limited range sensors. The routing protocols in WSNs are different than the traditional routing protocols due to the sensors limitations. 
-Most routing protocols concentrate on the ability for scalability, reliability and adaptability to the network changes without emphasising the importance of residual energy as part of the vital design in a routing protocol.
+\IEEEPARstart{W}{ireless} sensor networks (WSNs) are widely used in various kinds of applications to collect data and measurements data from the sensors. 
+The sensors are mainly deployed to track and monitor in different types of environments such as on the land, underground and underwater for continuous sensing, event detection, location sensing and other control over the different components of the sensing device. 
+It is increasingly important to have reliable and energy efficient WSNs that could function for years as sensors are easily deployed in areas that are difficult to reach such as for volcanic monitoring, forest fire detection and flood detection.
 
 %problem statement
 However, sensors suffer from limited hardware resources which only allow limited computational functionalities to be performed. Sensors also suffer from limited energy capacities as they are battery powered and will not able to function once the certain threshold of energy level is reached. 
 Sensors also operate in an unreliable radio environment that is noisy and error prone which drain the sensors batteries at a higher rate. These constraints have a major impact on the sensors performance. 
+In order to cope with the sensors limitations, the protocol should be able to use many reliably channels for communications to reduce the effect of interference and energy consumption, and to have an optimal energy-based routing to prolong the sensors and overall network lifetime.
+Many energy efficient protocols have been proposed in term of the Medium Access Control (MAC) protocols and routing protocols that show promising results in overcoming the problems but none is widely implemented yet.
+
+%Many energy efficient protocols have been proposed in term of the Medium Access Control (MAC) protocols and routing protocols that show promising results in overcoming the interference problems to maximise the throughput and reduce the energy consumption but none is widely implemented yet.
+%WSNs could help to enable automated services in smart cities to improve the environment quality, increase the energy saving and improve the lifestyle as WSNs simplify and reduce manual and labour work to automated systems. This is because sensors can be densely deployed, easy to install and require minimal maintenance over a period of time. 
+
+%Many energy efficient protocols have been proposed in term of the Medium Access Control (MAC) protocols, routing protocols, power control and energy harvesting to overcome the problems of interference to maximise the throughput and the sensors energy to prolong the network lifetime. 
+
+
+
+%MAC and routing protocols are the main protocols that control the network energy consumption to allow the network to remain functional for a longer period of time. While the other proposed solutions could increase the sensors residual energy, the energy saving depends on the MAC and routing protocols.
+%There have been many proposals in multichannel MAC protocols that show promising results but none is widely implemented yet. 
+%In MAC protocol, the energy consumption can be reduced by adjusting the radio duty cycle to allow the sensors to be in the sleep mode when they are not used and to transmit on channels that have less interference to increase the likeliness of data success.
+
+%To further improve the efficiency, routing protocols are responsible to ensure high success rate in data routing from the sender to the intended receiver across the network. 
+%The routing protocols are required to manage and maintain the routes to ensure reliable communications between the limited range sensors. 
+%The routing protocols in WSNs are different than the traditional routing protocols due to the sensors limitations. 
+%Most routing protocols concentrate on the ability for scalability, reliability and adaptability to the network changes without emphasising the importance of residual energy as part of the vital design in a routing protocol.
+
+
 %In order to prolong the sensors lifetime thus, the network lifetime, the sensors need to be able to cope with the limitations and be as energy-efficient as possible to guarantee good overall performance.
 %The sensors need to be able to cope with the limitations.
 %It is important to have a solution that could cope with the sensors limitation. 
-In order to cope with the limitations, a new protocol is required where the protocol should be able to use many reliably channels for communications to reduce the effect of interference and energy consumption, and to have an optimal energy-based routing to prolong the overall network lifetime.
+
 %by distributing the workload on different paths based on the sensors residual energy.
 % while maintaining high packet reception rate in WSN.
 
@@ -60,15 +74,20 @@ In order to cope with the limitations, a new protocol is required where the prot
 %Implementing multichannel MAC protocol that uses a reliable and energy-aware routing protocol enables the overall network lifetime to be prolonged while maintaining high packet reception rate in WSNs.
 
 %our solution in brief
-Multichannel cross-layer routing protocol (MCRP)\cite{mcrp} is a multichannel protocol that considers all available channels. The protocol is partly distributed where the nodes work independently with a centralised controller, low power border router (LPBR) that has the intelligence to analyses and provides control decisions over the channels in the network. MCRP helps to increase the overall throughput by using interference free or minimal interference channels for communications.
+Multichannel cross-layer routing protocol (MCRP\footnotemark) is a multichannel protocol that considers all available channels in the spectrum. The protocol is partly distributed where the nodes work independently with a centralised controller, low power border router (LPBR) that has the intelligence to analyse and provide control decisions over the channels in the network. MCRP helps to increase the overall throughput by using interference free or minimal interference channels for communications.
 %, however it does not consider the sensors lifetime during the decision making process. 
-In order to optimise the network lifespan while ensuring high throughput through multichannel, the energy-based tree reconfiguration is proposed. It is aimed to extend the current WSN lifetime by finding the optimal tree through swapping the routes of the sensor with the minimum residual energy to other alternative paths. 
+In order to optimise the network lifespan while ensuring high throughput through multichannel, the energy-based tree reconfiguration is proposed. It is aimed to extend the current WSN lifetime by finding the optimal tree through routes swapping of the sensor with the minimum residual energy to other alternative paths. 
 
 %our evaluation shows that
-The experimental results show that MCRP demonstrates high throughput of nearly 100\% 
-%compared to an existing multichannel protocol that shows on average 70\% reception rate 
-in Cooja emulation and 80\%-90\% in the real world environments. Multichannel also improves the energy efficiency as it consumes 3 times less energy than a single channel during communications.
-In the optimal tree reconfiguration, the experiments show an increase in the lifetime of the network by 8.3 times than the initial lifetime of 0.3\% through routes swap.
+The experimental results show that MCRP demonstrates high throughput of nearly 100\% as it is able to detect and avoid from using the channels with high interference for communications
+%compared to Orchestra, an existing multichannel protocol that has an average of 70\% reception rate 
+in Cooja emulation. MCRP also shows high throughput values of 80\%-90\% in the real world environments where the experiments took place in an office (university) and residential environments to prove that MCRP provides high packet reception rate regardless of the locations that may have different channels occupancy. 
+%Multichannel 
+MCRP also improves the energy efficiency as it consumes 3 times less energy than a single channel during communications.
+In the optimal tree reconfiguration, the experiments show an increase of 8.3 times than the initial lifetime of 0.3\% through routes swap.
+
+\footnotetext{Our protocol MCRP preliminary version is described in \cite{mcrp}.}
+%In the optimal tree reconfiguration, the experiments show an increase in the lifetime of the network by 8.3 times than the initial lifetime of 0.3\% through routes swap.
 % by switching the routes that use the sensor with the minimum residual energy from their initial paths to other alternative paths.
 
 %%The contributions of this paper are as follows. First, multichannel cross-layer routing protocol (MCRP)\cite{mcrp} for WSNs that was developed is described which shows improved energy efficiency as it consumes on average, 6 times less energy during communications.
@@ -76,6 +95,6 @@ In the optimal tree reconfiguration, the experiments show an increase in the lif
 %%Multichannel helps to increase the overall throughput by using interference free or minimal interference channels, however it does not consider the sensors lifetime during the decision making process. Multichannel routing tree optimisation is introduced which aims to extend the WSN lifetime by switching the routes that use the sensor with the minimum residual energy from their initial paths to other paths which from the experiments show an increase in the lifetime of the network by 8.3 times than the initial lifetime of 0.3\%. 
 %The sensors are assumed to be on the good channels. The sensors have different transmission and reception channels. 
 
-This paper is organised as follows. Section \ref{RelatedWork} presents the related work, Section \ref{ProblemFormulation} defines the problem in WSNs and the approaches for optimisation. Section \ref{MCRP} explains the multichannel cross-layer routing protocol (MCRP), the improvements in comparison to a single and existing multichannel protocols and evaluates MCRP performance in emulation and real world environments.
+This paper is organised as follows. Section \ref{RelatedWork} presents the related work, Section \ref{ProblemFormulation} defines the problem in WSNs and the approaches for optimisation. Section \ref{MCRP} explains the multichannel cross-layer routing protocol, the improvements in comparison to a single and existing multichannel protocols and evaluates MCRP performance in emulation and real world environments.
 %multichannel protocol which could be improved through routing protocol.
 Section \ref{OptimalTree} describes the proposed energy-based tree reconfiguration for WSNs in detail and Section \ref{PerformanceEvaluation} evaluates the performance of the proposed optimisation. Finally, Section \ref{Conclusion} concludes this paper.

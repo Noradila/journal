@@ -11,22 +11,32 @@ Thus, there are two main ways that have been explored in many studies to maximis
 The aim of the multichannel routing tree optimisation in WSNs is to extend the network lifetime under the given energy and sensor constraints without jeopardizing reliability and communications efficiency of the network.
 
 \subsection{Multichannel MAC Protocols}
-Many energy efficient multichannel MAC protocols have been proposed to ensure high reliability for low power networking which also resulted in better network lifetime such as MC-LMAC \cite{mc-lmac}, Y-MAC \cite{y-mac}, Orchestra \cite{orchestra} and MiCMAC \cite{micmac}.  
-The main causes of energy consumption are nodes collision when the nodes that are within each others' transmission range transmit simultaneously, overhearing that happens when a node receives irrelevant packets and idle listening where the node keeps its radio on while listening to the channel for potential packets \cite{macsurvey}.
+Many energy efficient multichannel MAC protocols have been proposed to ensure high reliability for low power networking and to overcome known problems such as collisions, overhearing and idle listening .
+%which resulted in better network lifetime 
+%such as MC-LMAC \cite{mc-lmac}, Y-MAC \cite{y-mac}, Orchestra \cite{orchestra} and MiCMAC \cite{micmac}.  
+
+%The main causes of energy consumption are nodes collision when the nodes that are within each others' transmission range transmit simultaneously, overhearing that happens when a node receives irrelevant packets and idle listening where the node keeps its radio on while listening to the channel for potential packets \cite{macsurvey}. Multichannel MAC protocols help to overcome these problems.
 
 %issues
 
 %existing mac
-Existing multichannel MAC protocols can be categorised into synchronise and asynchronous systems. Synchronise system requires tight time synchronisation between the nodes and require schedule to be established for the nodes to access the channel for communications. This avoids collision between nodes during transmission as the nodes have their own slot for communications. Asynchronous system is a sender or receiver initiated communications where the nodes have to compete to access the channel for transmissions. 
--not costly and wasting bandwidth for synchronisation however has to compete for access.
+The existing multichannel MAC protocols can be categorised into synchronise and asynchronous systems. Synchronise system requires tight time synchronisation and to establish scheduling for the nodes to access the channel for communications. This avoids collision between the nodes during transmission as the nodes have their own slot for communications. Asynchronous system is a self-configure sender or receiver initiated communication. Unlike synchronise systems, the nodes have to compete to access the channel for transmissions. 
+%-not costly and wasting bandwidth for synchronisation however has to compete for access.
 
 %comparisons on mac
-Orchestra is a synchronise MAC protocol. Orchestra is a timeslot protocol that is based on the Timeslotted Channel Hopping (TSCH) that uses time synchronisation and channel hopping to increase reliability in the network. This enables the packet to be communicated on different frequencies to increase the probability of succeeding if the transmission fails in the previous frequency. 
+Orchestra \cite{orchestra} is a synchronise MAC protocol
+%Orchestra is a timeslot protocol 
+that is based on the Timeslotted Channel Hopping (TSCH) \cite{tsch}. It uses time synchronisation and channel hopping to increase the reliability in the network. 
+MiCMAC \cite{micmac} is an asynchronous MAC protocol that uses a distributed channel hopping protocol and switches to a different channel each time it wakes up.
 
-MiCMAC is an asynchronous MAC protocol. It is a distributed channel hopping protocol that switches to different channel each time it wakes up to increase the likeliness for the packet to be received if it failed previously. It has a predefined hopping sequences at runtime to increase optimisation. However, the performance degraded when it considers all 16 channels as it includes the high interference channels for transmissions. It shows optimal performance with 4 channels.
+Channel hopping enables the packet to be communicated on different frequencies to increase the probability of succeeding if the transmission fails in the previous frequency. 
+These protocols have a predefined hopping sequences at runtime to increase optimisation. These limits the protocols ability to adapt to different locations that may have different interference patterns. These protocols show degraded performance when all 16 channels are considered as the selections would include high interference channels. MiCMAC shows optimal performance with 4 channels. 
 
-Channel hopping designs where the protocols usually select a few channels that have been tested to hop into. However, by considering all channels to hop, it could be disadvantaged to the protocol as it would hop to the interference channels.
--Channel hopping advantage - to have retransmission on a different channel than it was transmitted previously. It increases the likelihood of succeeding than retransmitting on the same channel. 
+%MiCMAC is an asynchronous MAC protocol. It is a distributed channel hopping protocol that switches to different channel each time it wakes up to increase the likeliness for the packet to be received if it failed previously. 
+%It has a predefined hopping sequences at runtime to increase optimisation. However, the performance degraded when it considers all 16 channels as it includes the high interference channels for transmissions. It shows optimal performance with 4 channels.
+
+%Channel hopping designs where the protocols usually select a few channels that have been tested to hop into. However, by considering all channels to hop, it could be disadvantaged to the protocol as it would hop to the interference channels.
+%-Channel hopping advantage - to have retransmission on a different channel than it was transmitted previously. It increases the likelihood of succeeding than retransmitting on the same channel. 
 
 %conclude
 
@@ -37,8 +47,11 @@ Channel hopping designs where the protocols usually select a few channels that h
 
 %Multichannel is one of the solutions to overcome collision and overhearing in addition to adjusting the duty cycle efficiency on the protocol. 
 %Multichannel is sa preferable solution to improve resilience against interference and maintain reliable communications. 
-Multichannel has many benefits for a WSN. By using multichannel, the internal and external interference can be reduced. As the effect, the latency is decreased while the reception rate and throughput are increased.
-However, it is extremely difficult to find a good interference free channels as it varies from one location to another. While channel hopping is a good option, a protocol that could reliably use many interference free or small interference channels are an enabler for higher throughput which could prolong the network lifetime.
+Multichannel has many benefits for a WSN to combat internal and external interference which as the effect, increases the throughput and reduces latency.
+%By using multichannel, the internal and external interference can be reduced. 
+%As the effect, the latency is decreased while the reception rate and throughput are increased.
+However, it is extremely difficult to find a good interference free channels as it varies from one location to another. While channel hopping is a good solution to reduce packet losses in exchange to retransmissions on different channels, it does not guarantee that the retransmission channel would be better than the previous channel. Thus, a protocol that could detect interference free channels would become an enabler for reliable communications.
+% higher throughput which could prolong the network lifetime.
 
 %Multichannel communications have potential benefits for wireless networks that include improved resilience against internal and external interference, reduced latency, enhanced reception rate and increased throughput. 
 

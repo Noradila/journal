@@ -5,7 +5,7 @@
 WSNs often suffer from frequent occurrences of external interference such as Wi-Fi and Bluetooth.
 Multichannel communications in wireless networks can alleviate the effects of interference to enable WSNs to operate reliably in the presence of such interference. As a result, multichannel solution can improve the network efficiency of spectrum usage, network stability, link reliability, minimise latency and minimise the number of packet loss, hence, retransmission.
 
-Multichannel Cross-Layer Routing Protocol (MCRP) \cite{mcrp} is a decentralised cross-layer protocol with a centralised controller. The cross layer multichannel protocol focuses on the network and application layers. This allows channel assignment decisions to be made thoroughly without being limited by the low layer complexity. The system has two parts: a central algorithm which is typically run by the LPBR for nodes channel allocation; and a protocol which allows the network to communicate the channel change decision, probe the new channel and either communicate the success of the change or fall back to the previous channel. MCRP concentrates on finding channels for the nodes that are free from or have low external interference to maximise the packet reception rate. It also allows the allocation of these channels to avoid cross interference between different pairs of nodes.
+Multichannel Cross-Layer Routing Protocol (MCRP) \cite{mcrp} is a decentralised cross-layer protocol with a centralised controller. The cross layer multichannel protocol focuses on the network and application layers. This allows channel assignment decisions to be made without being limited by the low layer complexity. The system has two parts: a central algorithm which is typically run by the LPBR for nodes channel allocation; and a protocol which allows the network to communicate the channel change decision, probe the new channel and either communicate the success of the change or fall back to the previous channel. MCRP concentrates on finding channels for the nodes that are free from or have low external interference to maximise the packet reception rate. It also allows the allocation of these channels to avoid cross interference between different pairs of nodes.
 
 
 %minimise the chances of nodes which are physically near to communicate on the same channel. Hence, it reduces cross interference between different pairs of nodes, external interference and maxim.
@@ -91,7 +91,7 @@ The protocol ascertains that the channel change attempt will always result in a 
 \begin{figure}
 \centering
 \includegraphics[trim=2cm 2cm 2cm 2cm, clip=true, totalheight=0.36\textheight, angle=270]{figures/channelSwitching.pdf}
-\caption{MCRP}
+\caption{MCRP processes}
 \label{fig_mcrpDiagram}
 \end{figure}
 

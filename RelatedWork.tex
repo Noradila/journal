@@ -1,35 +1,44 @@
 \section{Related Work}
 \label{RelatedWork}
 
-There are various definitions of network lifetime that have been used. These definitions are application-specific as some applications might tolerate a considerable number of loss nodes, while some applications require a higher number of nodes which any loss is considered critical to the network such as in sparsely deployed nodes of an area. The definitions impact the performance differently, depending on the applications. The network lifetime in this paper is defined as the first node to fail in the network.
-
-%The first node to die - The network lifetime is defined as the first node to fail in the network \cite{maxmin, erapl}. In \cite{lifetimedef1}, the simulation ends when a node reaches the energy level of zero.
+There are various definitions of network lifetime that have been used. These definitions are application-specific as some applications might tolerate a considerable number of loss nodes, while some applications require a higher number of nodes to function which any loss is considered critical to the network such as in sparsely deployed nodes of an area. The definitions impact the performance differently, depending on the applications. The network lifetime in this paper is defined as the first node to fail in the network.
 
 Network lifetime is strongly related to the remaining energy of all nodes. Typically, sensors that are close to the sink have higher energy drain than the other nodes. Overloading these key sensors would result in a shorter network lifetime.
-%However, blindly routing packets to use sensors with maximum energy will place heavy burden to the sensor which would make the sensor useless quickly.
-It is important to have energy balance nodes to ensure the nodes consume the same quantity of energy in order to increase the overall network lifetime.
-%%the lifetime of the whole network; topology will not be energy balanced.
-Thus, there are two main ways that have been explored in many studies to maximise the network lifetime by introducing multichannel MAC protocol which reduces the energy consumption through interference free channel selection and optimising the routing protocol to consider the residual energy in addition to the routes condition.
-
-%However, overloading the nodes with maximum energy 
-%maximising the minimal energy of all the nodes is not the best way to prolong the network lifetime as it will place heavy burden to the key nodes such that nodes that are close to the sink. These nodes drain their batteries quicker than other nodes which as a result, shorten the network lifetime.
-
-%There are four ways that have been explored from many studies to maximise the network lifetime, which are by introducing (i) energy efficient MAC protocols, (ii) energy efficient routing protocols, (iii) controlling the transmission power and (iv) using energy harvesting. These options are described in details in the next few sections, introducing the differences and advantages, and the existing proposed solutions.
+It is important to have energy balance nodes to ensure the energy at each node is consumed at similar rate.
+%consume the same quantity of energy in order to increase the overall network lifetime.
+Thus, there are two main ways that have been explored in many studies to maximise the network lifetime by introducing (i) multichannel MAC protocol which reduces the energy consumption through duty cycles and interference free channel selection and (ii) optimising the routing protocol to consider the nodes residual energy in addition to the routes condition.
 
 The aim of the multichannel routing tree optimisation in WSNs is to extend the network lifetime under the given energy and sensor constraints without jeopardizing reliability and communications efficiency of the network.
 
 \subsection{Multichannel MAC Protocols}
 Many energy efficient multichannel MAC protocols have been proposed to ensure high reliability for low power networking which also resulted in better network lifetime such as MC-LMAC \cite{mc-lmac}, Y-MAC \cite{y-mac}, Orchestra \cite{orchestra} and MiCMAC \cite{micmac}.  
-The main causes of energy consumption are nodes collision, overhearing and idle listening \cite{macsurvey}.
+The main causes of energy consumption are nodes collision when the nodes that are within each others' transmission range transmit simultaneously, overhearing that happens when a node receives irrelevant packets and idle listening where the node keeps its radio on while listening to the channel for potential packets \cite{macsurvey}.
 
-In idle listening, the node keeps its radio on while listening to the channel for potential packets. The node does not know when it will be the receiver of the packet. Considerable amounts of energy are wasted as the node keeps its radio on for a longer period listening to an idle channel when it does not receive or transmit packets. Thus, it is important to reduce the radio usage to conserve the nodes energy. Overhearing happens when a node receives irrelevant packets or signals that are not intended for the node. As the radio uses nearly the same energy for all operations, this drains the node energy unnecessarily. 
+%issues
 
-Collision happens when nodes that are within each others' transmission range transmit simultaneously. The energy used in the collided transmissions is wasted as none of the nodes would receive the transmitted packet. 
-Collision also happens with external interference especially with Wi-Fi interference as it can potentially collide with four 802.15.4 channels. There are only a few channels that do not overlap with Wi-Fi. However, avoiding all channels with Wi-Fi would overload the limited available channels. Thus, the overlapping frequencies can be used by introducing other means to improve the technologies coexistence.
+%existing mac
+Existing multichannel MAC protocols can be categorised into synchronise and asynchronous systems. Synchronise system requires tight time synchronisation between the nodes and require schedule to be established for the nodes to access the channel for communications. This avoids collision between nodes during transmission as the nodes have their own slot for communications. Asynchronous system is a sender or receiver initiated communications where the nodes have to compete to access the channel for transmissions. 
+-not costly and wasting bandwidth for synchronisation however has to compete for access.
+
+%comparisons on mac
+Orchestra is a synchronise MAC protocol. Orchestra is a timeslot protocol that is based on the Timeslotted Channel Hopping (TSCH) that uses time synchronisation and channel hopping to increase reliability in the network. This enables the packet to be communicated on different frequencies to increase the probability of succeeding if the transmission fails in the previous frequency. 
+
+MiCMAC is an asynchronous MAC protocol. It is a distributed channel hopping protocol that switches to different channel each time it wakes up to increase the likeliness for the packet to be received if it failed previously. It has a predefined hopping sequences at runtime to increase optimisation. However, the performance degraded when it considers all 16 channels as it includes the high interference channels for transmissions. It shows optimal performance with 4 channels.
+
+Channel hopping designs where the protocols usually select a few channels that have been tested to hop into. However, by considering all channels to hop, it could be disadvantaged to the protocol as it would hop to the interference channels.
+-Channel hopping advantage - to have retransmission on a different channel than it was transmitted previously. It increases the likelihood of succeeding than retransmitting on the same channel. 
+
+%conclude
+
+%In idle listening, the node keeps its radio on while listening to the channel for potential packets. The node does not know when it will be the receiver of the packet. Considerable amounts of energy are wasted as the node keeps its radio on for a longer period listening to an idle channel when it does not receive or transmit packets. Thus, it is important to reduce the radio usage to conserve the nodes energy. Overhearing happens when a node receives irrelevant packets or signals that are not intended for the node. As the radio uses nearly the same energy for all operations, this drains the node energy unnecessarily. 
+
+%Collision happens when nodes that are within each others' transmission range transmit simultaneously. The energy used in the collided transmissions is wasted as none of the nodes would receive the transmitted packet. 
+%Collision also happens with external interference especially with Wi-Fi interference as it can potentially collide with four 802.15.4 channels. There are only a few channels that do not overlap with Wi-Fi. However, avoiding all channels with Wi-Fi would overload the limited available channels. Thus, the overlapping frequencies can be used by introducing other means to improve the technologies coexistence.
 
 %Multichannel is one of the solutions to overcome collision and overhearing in addition to adjusting the duty cycle efficiency on the protocol. 
-%Multichannel is a preferable solution to improve resilience against interference and maintain reliable communications. 
+%Multichannel is sa preferable solution to improve resilience against interference and maintain reliable communications. 
 Multichannel has many benefits for a WSN. By using multichannel, the internal and external interference can be reduced. As the effect, the latency is decreased while the reception rate and throughput are increased.
+However, it is extremely difficult to find a good interference free channels as it varies from one location to another. While channel hopping is a good option, a protocol that could reliably use many interference free or small interference channels are an enabler for higher throughput which could prolong the network lifetime.
 
 %Multichannel communications have potential benefits for wireless networks that include improved resilience against internal and external interference, reduced latency, enhanced reception rate and increased throughput. 
 

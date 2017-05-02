@@ -11,17 +11,10 @@ Thus, there are two main ways that have been explored in many studies to maximis
 The aim of the multichannel routing tree optimisation in WSNs is to extend the network lifetime under the given energy and sensor constraints without jeopardizing reliability and communications efficiency of the network.
 
 \subsection{Multichannel MAC Protocols}
-Many energy efficient multichannel MAC protocols have been proposed to ensure high reliability for low power networking and to overcome known problems such as collisions, overhearing and idle listening .
-%which resulted in better network lifetime 
-%such as MC-LMAC \cite{mc-lmac}, Y-MAC \cite{y-mac}, Orchestra \cite{orchestra} and MiCMAC \cite{micmac}.  
-
-%The main causes of energy consumption are nodes collision when the nodes that are within each others' transmission range transmit simultaneously, overhearing that happens when a node receives irrelevant packets and idle listening where the node keeps its radio on while listening to the channel for potential packets \cite{macsurvey}. Multichannel MAC protocols help to overcome these problems.
-
+Many energy efficient multichannel MAC protocols have been proposed to ensure high reliability for low power networking and to overcome known problems such as collisions, overhearing and idle listening.
 %issues
-
 %existing mac
 The existing multichannel MAC protocols can be categorised into synchronise and asynchronous systems. Synchronise system requires tight time synchronisation and to establish scheduling for the nodes to access the channel for communications. This avoids collision between the nodes during transmission as the nodes have their own slot for communications. Asynchronous system is a self-configure sender or receiver initiated communication. Unlike synchronise systems, the nodes have to compete to access the channel for transmissions. 
-%-not costly and wasting bandwidth for synchronisation however has to compete for access.
 
 %comparisons on mac
 Orchestra \cite{orchestra} is a synchronise MAC protocol
@@ -30,40 +23,18 @@ that is based on the Timeslotted Channel Hopping (TSCH) \cite{tsch}. It uses tim
 MiCMAC \cite{micmac} is an asynchronous MAC protocol that uses a distributed channel hopping protocol and switches to a different channel each time it wakes up.
 
 Channel hopping enables the packet to be communicated on different frequencies to increase the probability of succeeding if the transmission fails in the previous frequency. 
-These protocols have a predefined hopping sequences at runtime to increase optimisation. These limits the protocols ability to adapt to different locations that may have different interference patterns. These protocols show degraded performance when all 16 channels are considered as the selections would include high interference channels. MiCMAC shows optimal performance with 4 channels. 
-
-%MiCMAC is an asynchronous MAC protocol. It is a distributed channel hopping protocol that switches to different channel each time it wakes up to increase the likeliness for the packet to be received if it failed previously. 
-%It has a predefined hopping sequences at runtime to increase optimisation. However, the performance degraded when it considers all 16 channels as it includes the high interference channels for transmissions. It shows optimal performance with 4 channels.
-
-%Channel hopping designs where the protocols usually select a few channels that have been tested to hop into. However, by considering all channels to hop, it could be disadvantaged to the protocol as it would hop to the interference channels.
-%-Channel hopping advantage - to have retransmission on a different channel than it was transmitted previously. It increases the likelihood of succeeding than retransmitting on the same channel. 
+These protocols have predefined hopping sequences at runtime to increase optimisation. This limits the protocols ability to adapt to different locations that may have different interference patterns. The protocols show degraded performance when all 16 channels are considered as the selections would include high interference channels. MiCMAC shows optimal performance with 4 channels. 
 
 %conclude
-
-%In idle listening, the node keeps its radio on while listening to the channel for potential packets. The node does not know when it will be the receiver of the packet. Considerable amounts of energy are wasted as the node keeps its radio on for a longer period listening to an idle channel when it does not receive or transmit packets. Thus, it is important to reduce the radio usage to conserve the nodes energy. Overhearing happens when a node receives irrelevant packets or signals that are not intended for the node. As the radio uses nearly the same energy for all operations, this drains the node energy unnecessarily. 
-
-%Collision happens when nodes that are within each others' transmission range transmit simultaneously. The energy used in the collided transmissions is wasted as none of the nodes would receive the transmitted packet. 
-%Collision also happens with external interference especially with Wi-Fi interference as it can potentially collide with four 802.15.4 channels. There are only a few channels that do not overlap with Wi-Fi. However, avoiding all channels with Wi-Fi would overload the limited available channels. Thus, the overlapping frequencies can be used by introducing other means to improve the technologies coexistence.
-
 %Multichannel is one of the solutions to overcome collision and overhearing in addition to adjusting the duty cycle efficiency on the protocol. 
 %Multichannel is sa preferable solution to improve resilience against interference and maintain reliable communications. 
-Multichannel has many benefits for a WSN to combat internal and external interference which as the effect, increases the throughput and reduces latency.
+Multichannel has many benefits for a WSN to combat internal and external interference which as the effect, increases throughput and reduces latency.
 %By using multichannel, the internal and external interference can be reduced. 
 %As the effect, the latency is decreased while the reception rate and throughput are increased.
-However, it is extremely difficult to find a good interference free channels as it varies from one location to another. While channel hopping is a good solution to reduce packet losses in exchange to retransmissions on different channels, it does not guarantee that the retransmission channel would be better than the previous channel. Thus, a protocol that could detect interference free channels would become an enabler for reliable communications.
+However, it is extremely difficult to find good interference free channels as it varies from one location to another. While channel hopping is a good solution to reduce packet losses through retransmissions on different channels, it does not guarantee that the retransmission channel would be better than the previous channel. Thus, a protocol that could detect interference free channels would become an enabler for reliable communications.
 % higher throughput which could prolong the network lifetime.
 
 %Multichannel communications have potential benefits for wireless networks that include improved resilience against internal and external interference, reduced latency, enhanced reception rate and increased throughput. 
-
-%The radio module that is controlled by the MAC protocol is the major energy consumer in WSNs. The radio uses nearly the same energy in all active operation modes such as the transmit, receive and idle modes \cite{alexlifetime}. During idle mode, the node is still awake even though it does not transmit or receive packets. Thus, it is important to reduce the radio usage to conserve the nodes energy.
-
-%However, adjusting the duty cycle does not solve the interference problem as external interference is unpredictable especially with Wi-Fi interference as it can potentially collide with four 802.15.4 channels. There are only a few channels that do not overlap with Wi-Fi. However, avoiding all channels with Wi-Fi would overload the limited available channels. Thus, the overlapping frequencies can be used by introducing other means to improve the technologies coexistence.
-
-
-%A vast number of energy efficient MAC protocols have been developed to overcome these problems through \textit{duty cycling}. Duty cycled MAC protocols allow the node to periodically alters the sleep state and listen state. By lowering the duty cycle, the node sleeps for a longer period instead of being permanently active. However, the node needs to have frequent check interval to avoid deafness problem while keeping overhearing to a minimum. This reduces the energy consumed by idle listening and overhearing.
-
-%Many MAC protocols such as YMAC \cite{y-mac} use duty cycle as the indicator to evaluate the energy efficiency performance. This is because it is difficult to measure a node's energy consumption. 
-%However, there are studies that managed to estimate the energy consumption. This is described in Chapter \ref{energy}.
 
 \subsection{Routing Protocols}
 Various energy efficient routing protocols for WSNs have been proposed and developed to ensure efficient packet delivery to the destination. 
